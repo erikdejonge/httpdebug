@@ -22,9 +22,9 @@ def main():
     """
     main
     """
-    clear_screen()
+
     arguments = Arguments(__doc__)
-    print(arguments.for_print())
+    #print(arguments.for_print())
     return
 
     # noinspection PyUnresolvedReferences
