@@ -25,7 +25,7 @@ def main():
     arguments = Arguments(__doc__)
 
     # noinspection PyUnresolvedReferences
-    command = "/usr/bin/curl -s -o {}  {} -w ".format(arguments.outfile, arguments.url)
+    command = "/usr/bin/curl -s -vv -o {}  {} -w ".format(arguments.outfile, arguments.url)
     command += """
 "          content_type:  %{content_type}
     filename_effective:  %{filename_effective}
@@ -56,7 +56,7 @@ def main():
          url_effective:  %{url_effective}
                     ----------
 
-            time_total:  %{time_total}\n"; """.strip()
+            time_total:  %{time_total}\n@@"; """.strip()
 
     result = call_command(command, streamoutput=False, returnoutput=True, ret_and_code=True)
 
@@ -64,8 +64,10 @@ def main():
         print()
         print("> Downloading\033[91m", arguments.url ,"\033[0mto\033[32m", arguments.outfile, "\033[0m")
         print()
-        print(colorize_for_print(remove_extra_indentation(result[1], frontspacer="@$", padding=1)).replace("@$", " "))
+        print("\033[37m"+ result[1].split("@@")[1], "\033[0m\n")
+        print(colorize_for_print(remove_extra_indentation(result[1].split("@@")[0], frontspacer="@$", padding=1)).replace("@$", " "))
         print()
+
     else:
         print("error", result[0])
         print(result[1])
