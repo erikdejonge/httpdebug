@@ -3,11 +3,11 @@
 Show connection variables from curl
 
 Usage:
-  httpdebug.py [options] <url> <--outfile>
+  httpdebug.py [options] <url>
 
 Options:
-  -h --help      Show this screen.
-  --outfile=<of> File for received data [default: /dev/null].
+  -h --help         Show this screen.
+  --outfile=<data>  File for received data [default: /dev/null].
 
 author  : rabshakeh (erik@a8.nl)
 project : httpdebug
@@ -22,13 +22,10 @@ def main():
     """
     main
     """
-
     arguments = Arguments(__doc__)
-    #print(arguments.for_print())
-    return
 
     # noinspection PyUnresolvedReferences
-    command = "/usr/bin/curl -s {} -o /dev/null -w ".format(arguments.url)
+    command = "/usr/bin/curl -s -o {}  {} -w ".format(arguments.outfile, arguments.url)
     command += """
 "          content_type:  %{content_type}
     filename_effective:  %{filename_effective}
@@ -64,9 +61,15 @@ def main():
     result = call_command(command, streamoutput=False, returnoutput=True, ret_and_code=True)
 
     if result[0] == 0:
+        print()
+        print("> Downloading\033[91m", arguments.url ,"\033[0mto\033[32m", arguments.outfile, "\033[0m")
+        print()
         print(colorize_for_print(remove_extra_indentation(result[1], frontspacer="@$", padding=1)).replace("@$", " "))
+        print()
     else:
-        print("error")
+        print("error", result[0])
         print(result[1])
+        print()
+        print(command)
 if __name__ == "__main__":
     main()
