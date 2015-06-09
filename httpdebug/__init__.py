@@ -27,7 +27,7 @@ def main():
     # noinspection PyUnresolvedReferences
     command = "/usr/bin/curl -s -vv -o {}  {} -w ".format(arguments.outfile, arguments.url)
     command += """
-"          content_type:  %{content_type}
+"         content_type:  %{content_type}
     filename_effective:  %{filename_effective}
           p_entry_path:  %{ftp_entry_path}
              http_code:  %{http_code}
@@ -65,7 +65,7 @@ def main():
         print("> Downloading\033[91m", arguments.url ,"\033[0mto\033[32m", arguments.outfile, "\033[0m")
         print()
         print("\033[37m"+ result[1].split("@@")[1], "\033[0m\n")
-        print(colorize_for_print(remove_extra_indentation(result[1].split("@@")[0], frontspacer="@$", padding=1)).replace("@$", " "))
+        print(colorize_for_print(remove_extra_indentation(result[1].split("@@")[0], padding=1, frontspacer="@$")).replace("@$", " "))
         print()
 
     else:
