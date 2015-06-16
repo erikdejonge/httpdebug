@@ -9,7 +9,7 @@ created : 19-05-15 / 16:41
 
 from setuptools import setup
 setup(name='httpdebug',
-      version='9',
+      version='10',
       description='Curl based http downloader with debug information',
       url='https://github.com/erikdejonge/httpdebug',
       author='Erik de Jonge',
@@ -20,7 +20,7 @@ setup(name='httpdebug',
               'httpdebug=httpdebug:main',
           ],
       },
-      packages=['httpdebug'],
+      packages=[b'httpdebug'],
       zip_safe=True,
       install_requires=['cmdssh', 'consoleprinter', 'docopt'],
       classifiers=[
