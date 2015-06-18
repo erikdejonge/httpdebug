@@ -13,9 +13,15 @@ author  : rabshakeh (erik@a8.nl)
 project : httpdebug
 created : 19-05-15 / 16:41
 """
+from __future__ import print_function
+from __future__ import unicode_literals
+from __future__ import division
+from __future__ import absolute_import
+from future import standard_library
+standard_library.install_aliases()
 from arguments import Arguments
 from cmdssh import call_command
-from consoleprinter import colorize_for_print, remove_extra_indentation, clear_screen
+from consoleprinter import *
 
 
 def main():
@@ -61,17 +67,16 @@ def main():
     result = call_command(command, streamoutput=False, returnoutput=True, ret_and_code=True)
 
     if result[0] == 0:
-        print()
+        print("")
         print("> Downloading\033[91m", arguments.url ,"\033[0mto\033[32m", arguments.outfile, "\033[0m")
-        print()
+        print("")
         print("\033[37m"+ result[1].split("@@")[1], "\033[0m\n")
-        print(colorize_for_print(remove_extra_indentation(result[1].split("@@")[0], padding=1, frontspacer="@$")).replace("@$", " "))
-        print()
-
+        print(colorize_for_print(remove_extra_indentation(result[1].split("@@")[0], padding=1, frontspacer="@$").replace("@$", " ")))
+        print("")
     else:
         print("error", result[0])
         print(result[1])
-        print()
+        print("")
         print(command)
 if __name__ == "__main__":
     main()
