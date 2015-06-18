@@ -28,7 +28,7 @@ setup(name='httpdebug',
       },
       packages=['httpdebug'],
       zip_safe=True,
-      install_requires=['cmdssh', 'consoleprinter', 'docopt'],
+      install_requires=['cmdssh', 'consoleprinter', 'arguments'],
       classifiers=[
           "Programming Language :: Python :: 3",
           "Development Status :: 4 - Beta ",
