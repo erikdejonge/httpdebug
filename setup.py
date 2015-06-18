@@ -6,16 +6,11 @@ author  : rabshakeh (erik@a8.nl)
 project : httpdebug
 created : 19-05-15 / 16:41
 """
-from __future__ import unicode_literals
-from __future__ import print_function
-from __future__ import division
-from __future__ import absolute_import
-from future import standard_library
-standard_library.install_aliases()
+
 
 from setuptools import setup
 setup(name='httpdebug',
-      version='12',
+      version='14',
       description='Curl based http downloader with debug information',
       url='https://github.com/erikdejonge/httpdebug',
       author='Erik de Jonge',
