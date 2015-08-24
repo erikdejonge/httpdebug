@@ -10,7 +10,7 @@ created : 19-05-15 / 16:41
 
 from setuptools import setup
 setup(name='httpdebug',
-      version='22',
+      version='23',
       description='Curl based http downloader with debug information',
       url='https://github.com/erikdejonge/httpdebug',
       author='Erik de Jonge',
